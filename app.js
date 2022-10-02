@@ -1,25 +1,70 @@
 const api = "https://63331d67433198e79dbfa3d4.mockapi.io/api/DatasGame"
+const main=document.querySelector('.main');
+
 const chests=document.querySelectorAll('.chest');
 const ship=document.querySelector('.ship');
+
 const map=document.querySelector('.main-map');
 const quesBox=document.querySelectorAll('.ques-box');
 const part_2=document.querySelector('.part__2-map')
+const part_1=document.querySelector('.part__1')
+
+
 const modal=document.querySelector('.modal-ques')
 const trueAnswer=new Audio('./source/music/ting.mp3')
 const failAnswer=new Audio('./source/music/fail.mp3')
 
+const score=document.querySelector('.infor-score');
 const quesTitle=document.querySelector('.ques-title')
 const ansTitle=document.querySelectorAll('.modal-answer')
 
-const chestsPos=[]
-const shipPos={
-    y:Math.round(ship.getBoundingClientRect().top),
-    x:Math.round(ship.getBoundingClientRect().left),
-}
+const inforTitle=document.querySelectorAll('.infor-title') 
+const inputInfor=document.querySelectorAll('.body-input')
+inputInfor[0].value=localStorage.getItem('name')?localStorage.getItem('name'):''
+inputInfor[1].value=localStorage.getItem('msv')?localStorage.getItem('msv'):''
+inputInfor[2].value=localStorage.getItem('_class')?localStorage.getItem('_class'):''
+const btnStart=document.querySelector('.btn-start');
+var myScore=0
 var isClear
 var nowIndex
 var mainData
+
+
+
+const chestsPos=[]
+var shipPos={
+ 
+}
+btnStart.addEventListener('click',()=>{
+    checkValidate()
+   
+    
+   
+
+})
+
+function startGame1(){
+    localStorage.setItem('name',inputInfor[0].value)
+    localStorage.setItem('msv',inputInfor[1].value)
+    localStorage.setItem('_class',inputInfor[2].value)
+    saveInfor(inputInfor[0].value,inputInfor[1].value,inputInfor[2].value)
+    part_1.classList.remove('d-flex')
+    part_2.classList.add('d-flex')
+    shipPos={
+        y:Math.round(ship.getBoundingClientRect().top),
+        x:Math.round(ship.getBoundingClientRect().left),
+    }
+
+    getData(api,(datas)=>saveData(datas))
+}
+
+function saveInfor(name,msv,_class){
+    inforTitle[0].innerHTML=name
+    inforTitle[1].innerHTML=msv
+    inforTitle[2].innerHTML=_class
+}
 function shipMove(x,y,i,data){
+    console.log(x,y)
     ship.style.transform =` translate(${x-shipPos.x-10}px,${y-shipPos.y-10}px)`;
     const myTime=setTimeout(()=>{
         const checkY=Math.round(ship.getBoundingClientRect().top)===y-10
@@ -29,6 +74,7 @@ function shipMove(x,y,i,data){
             if(chests[i].classList.contains('open')){
                 nowIndex=i;
                 displayQues(i,data)
+               
             }
             else
                 if(chests[i].classList.contains('close'))
@@ -52,18 +98,34 @@ function displayFail(content){
 
 }
 
+ansTitle[0].onclick=()=>{check(0)}
+ansTitle[1].onclick=()=>{check(1)}
+ansTitle[2].onclick=()=>{check(2)}
+ansTitle[3].onclick=()=>{check(3)}
+
 function displayQues(index,data){
     const progress=document.querySelector('.time-line')
     var width=100
     progress.style.width='100%'
     const timing=setInterval(()=>{
-        console.log(progress.style.width,isClear)
-            if(isClear){
-                clearInterval(timing)
-                isClear = false
-            }
+        if(isClear){
+            clearInterval(timing)
+            isClear = false
+        }
         if(progress.style.width==='0.2%'){
             failAnswer.play()
+            if(mainData[nowIndex].trueAns[0]==='A'){
+                tingting(0)
+            }
+            if(mainData[nowIndex].trueAns[0]==='B'){
+                tingting(1)
+            }
+            if(mainData[nowIndex].trueAns[0]==='C'){
+                tingting(2)
+            }
+            if(mainData[nowIndex].trueAns[0]==='D'){
+                tingting(3)
+            }
             mainData[nowIndex].trueAns='null'
             clearInterval(timing)
             chests[nowIndex].src='./source/img/chest_close.png'
@@ -92,6 +154,7 @@ function check(index){
     isClear = false;
     if(ansTitle[index].innerHTML===`${mainData[nowIndex].trueAns}`){         
         trueAnswer.play()
+        myScore+=10;
         chests[nowIndex].src='./source/img/chest_zero.png'
         mainData[nowIndex].trueAns='null'
         tingting(index)
@@ -101,10 +164,10 @@ function check(index){
             modal.classList.remove('d-flex');
         },2000)
         isClear=true;
+        score.innerHTML=myScore
     }
     else{
         failAnswer.play()
-        console.log(mainData[nowIndex].trueAns)
         if(mainData[nowIndex].trueAns[0]==='A'){
             tingting(0)
         }
@@ -137,9 +200,7 @@ function tingting(index){
             item.style.filter='brightness(40%)'
             item.style.pointerEvents='none'
             setTimeout(()=>{
-
-                item.style.pointerEvents='default';
-
+                item.style.pointerEvents='auto';
                 item.style.filter='brightness(100%)'
             },2000)
         }
@@ -154,8 +215,7 @@ function getData(api,callback){
 }
 
 
-getData(api,(datas)=>saveData(datas))
-    function saveData(datas){
+function saveData(datas){
     var data
     data=datas
     data.forEach((item)=>{
@@ -181,5 +241,24 @@ function handleGetData(data){
         })
     });
     mainData=data
+}
 
+function checkValidate(){
+    var isContinue=true
+    const message=document.querySelectorAll('.message')
+    inputInfor.forEach((item,i)=>{
+        if(item.value===''){
+            message[i].innerHTML='Không bỏ trống trường này!';
+            isContinue=false
+            return;
+        }
+        else{
+            message[i].innerHTML=''
+        }
+        console.log(item.value,isContinue,i)
+        if((i==2) && (isContinue===true)){
+            console.log('start')
+            startGame1()
+        }
+    })
 }

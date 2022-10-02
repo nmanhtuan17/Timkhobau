@@ -14,23 +14,86 @@
 </head>
 <body>
     <section class="main">
-        <div class="part__2-map d-flex row">
+        <div class="part__1 d-flex">
+            <div class="part__1-login d-flex">
+                <div class="login">
+                    <div class="login__header">
+                        <h3>Chào mừng đến với chúng tôi</h3>
+                        <span>
+                            Vui lòng nhập thông tin của bạn thật chính xác!
+                        </span>
+                    </div>
+                    <div class="login__body">
+                        <div class="name-input infor">
+                            <span class="tiltle-input">Họ và tên</span> 
+                            <input type="text" class="body-input" placeholder="Họ tên của bạn">
+                            <span class="message"></span>
+                        </div>
+                        <div class="msv-input infor">
+                            <span class="tiltle-input">Mã sinh viên</span> 
+                            <input type="text" class="body-input" placeholder="Mã sinh viên của bạn">
+                            <span class="message"></span>
+                        </div>
+                        <div class="class-input infor">
+                            <span class="tiltle-input">Tên lớp chuyên ngành</span> 
+                            <input type="text" class="body-input" placeholder="Ví dụ: TT34H2">
+                            <span class="message"></span>
+                        </div>
+                    </div>
+                    <img class="img-login" src="./source/login.png" alt="login">
+                </div>
+            </div>
+            <div class="left">
+                
+            </div>
+            <div class="part__1-name h-50 d-flex ">
+                <div class="part__1-tiltle">
+                    <h3>
+                        <span class="title__1 main-title">
+                            Truy tim
+                             <object data="./source/treasure-2.svg"  height="30px" width="30px" style="position: relative;top: 5px;"></object>
+                             <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top: 15px;" ></object>
+                             <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top: 15px;left:-15px" ></object>
+                             <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top: 15px;left:-30px" ></object>
+                             <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top: 15px;left:-45px" ></object>
+                        </span> 
+                        
+                        <span class="title__2 main-title">
+                            <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top:15px;right:-45px;"></object>
+                            <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top:15px;right:-30px;"></object>
+                            <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top:15px;right:-15px;"></object>
+                            <object data="./source/water.svg" height="30px" width="30px" style="position: relative;top:15px;" ></object>
+                            kho bau
+                            <object data="./source/treasure.svg" height="30px" width="30px" style="position: relative;top: 5px;"></object>
+                        </span>
+                    </h3>
+                </div>
+                <button class="btn btn-primary btn-start">Let start!</button>
+            </div>
+        </div>
+
+
+        <!-- ------------------------------------------------------------------------------------------------------------- -->
+
+
+
+        <div class="part__2-map row">
             <div class="map-left flex-container">
                 <div class="map-left-container map-container">
                     <h3 class="map-header">Thông tin</h3>
                     <div class="guide">
                         <div class="guide--name infor">
-                            Họ và Tên: <span  class="infor-name">Nguyễn Quang Thắng</span>
-
+                            Họ và Tên: <span  class="infor-name infor-title"></span>
+            
                         </div>
                         <div class="guide-msv infor">
-                            Mã sinh viên: <span  class="infor-msv">A41820</span>
+                            Mã sinh viên: <span  class="infor-msv infor-title"></span>
                         </div>
                         <div class="guide-class infor">
-                            Tên lớp chuyên ngành: <span class="infor-class">TT34H2</span>
+                            Tên lớp chuyên ngành: <span class="infor-class infor-title"></span>
                         </div>
                         <div class="guide-class infor">
-                            Số điểm hiện tại: <span class="infor-class">0</span> điểm
+                            Số điểm hiện tại: <span class="infor-score">0</span> điểm
                         </div>
                     </div>
                 </div>
@@ -85,8 +148,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal-ques">
+            </div>
+            <div class="modal-ques">
             <div class="progress">
                 <span class="time-line"></span>
             </div>
@@ -96,23 +159,21 @@
                 </div>
             </div>
             <div class="modal-answers">
-                <div onclick="check(0)" class="modal-answer flex-container"></div>
-                <div onclick="check(1)" class="modal-answer flex-container"></div>
-                <div onclick="check(2)" class="modal-answer flex-container"></div>
-                <div onclick="check(3)" class="modal-answer flex-container"></div>
+                <div class="modal-answer flex-container"></div>
+                <div class="modal-answer flex-container"></div>
+                <div class="modal-answer flex-container"></div>
+                <div class="modal-answer flex-container"></div>
             </div>
-        </div>
-        <div class="modal-failure">
+            </div>
+            <div class="modal-failure">
                 <div class="modal-header">
                     Oops!!!
                 </div>
                 <div class="modal-body">
                 </div>
                 <button class="btn btn-primary btn-oops">Ok!</button>
-        </div>
+            </div>
     </section>
-
- 
-    <script src="./app.js"></script>
+    <script type="module" src="./app.js"></script>
 </body>
 </html>

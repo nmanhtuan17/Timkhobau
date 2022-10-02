@@ -19,6 +19,7 @@ body{
     height: 100vh;
 }
 .part__1 {
+    display: none;
     background: url("./source/img/bg.png");
     background-size: cover;
     background-position: center;
@@ -38,6 +39,12 @@ body{
     height: 80%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding:20px;
+}
+.message{
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 5px;
+    color: red;
 }
 .login__header{
     text-align: center;
@@ -356,6 +363,13 @@ body{
     position: absolute;
     font-size: 30px;
     color: rgb(245, 118, 0);
+    right: 20px;
+    top: 20px;
+    
+}
+.fail{
+    position: absolute;
+    font-size: 30px;
     right: 20px;
     top: 20px;
     
