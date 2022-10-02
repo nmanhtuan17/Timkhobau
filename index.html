@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+    <title>No Tiltle</title>
+</head>
+<body>
+    <section class="main">
+        <div class="part__2-map d-flex row">
+            <div class="map-left flex-container">
+                <div class="map-left-container map-container">
+                    <h3 class="map-header">Thông tin</h3>
+                    <div class="guide">
+                        <div class="guide--name infor">
+                            Họ và Tên: <span  class="infor-name">Nguyễn Quang Thắng</span>
+
+                        </div>
+                        <div class="guide-msv infor">
+                            Mã sinh viên: <span  class="infor-msv">A41820</span>
+                        </div>
+                        <div class="guide-class infor">
+                            Tên lớp chuyên ngành: <span class="infor-class">TT34H2</span>
+                        </div>
+                        <div class="guide-class infor">
+                            Số điểm hiện tại: <span class="infor-class">0</span> điểm
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="map flex-container">
+                <img class="main-map"src="./source/img/map.png" alt="map">
+                <img class="ship" src="./source/img/ship.png" alt="">
+                <div class="ques_1 ques-box">
+                    <span>Kho báu 1</span> 
+                    <img class="chest chest_1 open" src="./source/img/chest_open.png" alt="chest">
+                </div>
+                <div class="ques_2 ques-box">
+                    <span>Kho báu 2</span> 
+                    <img class="chest chest_2 open" src="./source/img/chest_open.png" alt="chest">
+                </div>
+                <div class="ques_3 ques-box">
+                    <span>Kho báu 3</span> 
+                    <img class="chest chest_3 open" src="./source/img/chest_open.png" alt="chest">
+                </div>
+                <div class="ques_4 ques-box">
+                    <span>Kho báu 4</span> 
+                    <img class="chest chest_4 open" src="./source/img/chest_open.png" alt="chest">
+                </div>
+                <div class="ques_5 ques-box">
+                    <span>Kho báu 5</span> 
+                    <img class="chest chest_5 open" src="./source/img/chest_open.png" alt="chest">
+                </div>
+            </div>
+            <div class="map-right flex-container">
+                <div class="map-right-container map-container">
+                    <img src="./source/img/logo.png" alt="logo">
+                    <h3 class="map-header">Hướng dẫn</h3>
+                    <div class="guide">
+                       <ul>
+                        <li>
+                            Click vào map để tàu đi đến vị trí đó và chiếm lấy kho báu.
+                        </li>
+                        <li>
+                            Khi tới kho báu bạn phải trả lời câu hỏi để lấy điểm thưởng. Trả lời đúng mỗi kho báu được 10 điểm.
+                        </li>
+                        <li>
+                            Con tàu sẽ không di chuyển khi click vào vị trí không phải kho báu.
+                        </li>
+                        <li>
+                            Đi qua năm kho báu sẽ được đi tới vòng tiếp theo.
+                        </li>
+                        <li>
+                            Bạn có thể bặt tắt nhạc khi bấm nút S trên bàn phím
+                        </li>
+                       </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-ques">
+            <div class="progress">
+                <span class="time-line"></span>
+            </div>
+            <div class="modal-ques-title flex-container">
+                <div class="ques-title flex-container">
+                    
+                </div>
+            </div>
+            <div class="modal-answers">
+                <div onclick="check(0)" class="modal-answer flex-container"></div>
+                <div onclick="check(1)" class="modal-answer flex-container"></div>
+                <div onclick="check(2)" class="modal-answer flex-container"></div>
+                <div onclick="check(3)" class="modal-answer flex-container"></div>
+            </div>
+        </div>
+        <div class="modal-failure">
+                <div class="modal-header">
+                    Oops!!!
+                </div>
+                <div class="modal-body">
+                </div>
+                <button class="btn btn-primary btn-oops">Ok!</button>
+        </div>
+    </section>
+
+ 
+    <script src="./app.js"></script>
+</body>
+</html>
