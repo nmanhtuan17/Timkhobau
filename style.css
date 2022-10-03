@@ -14,15 +14,39 @@ body{
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
+.moc{
+    position: absolute;
+    top:13px;
+    left:20px;
+    color: black;
+    font-size: 20px;
+    z-index: 5;
+    cursor: pointer;
+}
+.features{
+    position: absolute;
+    background-color: #E7E6FD;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 50%;
+    top:-40px;
+    left: -40px;
+    border: 1px solid black;
+}
+.features:hover{
+    background-color: #bcbbbe;
+    
+}
 .main{
     width: 100vw;
     height: 100vh;
 }
 .part__1 {
     display: none;
-    background: url("./source/img/bg.png");
-    background-size: cover;
+    background: url("https://ik.imagekit.io/TLIT/bg_vg18K7VjX.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664807816723");
     background-position: center;
+    background-size: cover;
     width: 100vw;
     height: 100vh;
 }
@@ -129,6 +153,22 @@ body{
     outline: none;
     border: none;
 }
+.btn-next1{
+    display: none;
+    background-color:#E7E6FD;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 300px;
+    height: 70px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 /* ---------------------------------------------------------------------------- */
 .flex-container{
     display: flex;
@@ -172,7 +212,7 @@ body{
 .map-container{
     background-color: #E7E6FD;
     border-radius: 10px;
-    width: 95%;
+    width: 85%;
     height: 90%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding:20px;
@@ -183,6 +223,7 @@ body{
 }
 .guide{
     margin-top: 20px;
+    margin-right: 10px;
 }
 .guide .infor{
     font-weight: bold;
@@ -200,17 +241,13 @@ body{
     position: absolute;
     width: 120px;
     height: 120px;
-    background: #e1a550;
     text-align: center;
-    padding:10px;
-    border-radius: 10px;
-    border: 2px solid black;
     z-index: 9;
+    cursor: pointer;
+    
 }
-.ques-box:hover{
-    background: #8b6530;
 
-}
+
 .ques-box span{
     font-weight: bold;
     display: block;
@@ -221,8 +258,9 @@ body{
     transform: translateX(-50%);
     left: 50%;
     display: block;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
+    
 }
 .ques_1 {
     top: 15%;
@@ -315,7 +353,7 @@ body{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("./source/img/bg.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("https://ik.imagekit.io/TLIT/bg_vg18K7VjX.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664807816723");
     background-size: cover;
     background-position: center;
     top:0;
@@ -375,7 +413,7 @@ body{
     
 }
 .modal-answer:hover{
-    background-color: #b0afbe;
+    background-color: #c4bfff;
 
 }
 .modal-answer:nth-child(1){

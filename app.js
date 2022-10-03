@@ -9,11 +9,18 @@ const quesBox=document.querySelectorAll('.ques-box');
 const part_2=document.querySelector('.part__2-map')
 const part_1=document.querySelector('.part__1')
 
+const btnNext1=document.querySelector('.btn-next1');
 
 const modal=document.querySelector('.modal-ques')
 const trueAnswer=new Audio('./source/music/ting.mp3')
 const failAnswer=new Audio('./source/music/fail.mp3')
-
+const part_1Song=new Audio('./source/music/part1.mp3')
+const beach=new Audio('./source/music/song.mp3')
+beach.loop=true;
+beach.volume=0.8;
+part_1Song.loop=true;
+part_1Song.volume=0.8;
+const features=document.querySelectorAll('.feature')
 const score=document.querySelector('.infor-score');
 const quesTitle=document.querySelector('.ques-title')
 const ansTitle=document.querySelectorAll('.modal-answer')
@@ -35,14 +42,37 @@ const chestsPos=[]
 var shipPos={
  
 }
-btnStart.addEventListener('click',()=>{
-    checkValidate()
-   
-    
-   
+function handleMusic(){
+    if(features[1].classList.contains('fa-play')){
+        part_1Song.play()
+        features[1].classList.remove('fa-play')
+        features[1].classList.add('fa-pause')
+    }else{
+        part_1Song.pause()
+        features[1].classList.remove('fa-pause')
+        features[1].classList.add('fa-play')
+    }
+}
+document.addEventListener('keydown',(e)=>{
+    if(e.key == "Enter"  ){
+        handleMusic()
+    }
+})
+features.forEach(feature=>{
+    feature.addEventListener('click',()=>{
+        handleMusic()
 
+    })
 })
 
+btnStart.addEventListener('click',()=>{
+    checkValidate()
+    beach.play()
+
+})
+btnNext1.addEventListener('click',()=>{
+    alert('Opps! chưa có vòng 2 nhé')
+});
 function startGame1(){
     localStorage.setItem('name',inputInfor[0].value)
     localStorage.setItem('msv',inputInfor[1].value)
@@ -50,6 +80,8 @@ function startGame1(){
     saveInfor(inputInfor[0].value,inputInfor[1].value,inputInfor[2].value)
     part_1.classList.remove('d-flex')
     part_2.classList.add('d-flex')
+    part_1Song.volume=0.2;
+
     shipPos={
         y:Math.round(ship.getBoundingClientRect().top),
         x:Math.round(ship.getBoundingClientRect().left),
@@ -134,11 +166,14 @@ function displayQues(index,data){
                 chests[nowIndex].classList.add('close')
                 part_2.classList.add("d-flex");
                 modal.classList.remove('d-flex');
+                if(checkDone1()){
+                    btnNext1.classList.add('d-block');
+                }
             },2000);
         }
         width-=0.2;
         progress.style.width=width+'%';
-    },50)
+    },20)
     
     part_2.classList.remove("d-flex");
     modal.classList.add('d-flex');
@@ -150,6 +185,16 @@ function displayQues(index,data){
 }
 
 
+function checkDone1(){
+    var res=true
+    chests.forEach((item)=>{
+        if(item.classList.contains("open")){
+            res= false;
+        }
+        console.log(res)
+    })
+    return res;
+}
 function check(index){
     isClear = false;
     if(ansTitle[index].innerHTML===`${mainData[nowIndex].trueAns}`){         
@@ -162,6 +207,9 @@ function check(index){
             chests[nowIndex].classList.remove('open')
             part_2.classList.add("d-flex");
             modal.classList.remove('d-flex');
+            if(checkDone1()){
+                btnNext1.classList.add('d-block');
+            }
         },2000)
         isClear=true;
         score.innerHTML=myScore
@@ -187,6 +235,9 @@ function check(index){
             chests[nowIndex].classList.add('close')
             part_2.classList.add("d-flex");
             modal.classList.remove('d-flex');
+            if(checkDone1()){
+                btnNext1.classList.add('d-block');
+            }
         },2000)
         isClear=true;
         
@@ -195,6 +246,7 @@ function check(index){
 
 function tingting(index){
     ansTitle[index].innerHTML+=`<i class="fa-solid fa-check ting"></i>`
+   
     ansTitle.forEach((item,i)=>{
         if(i!==index){
             item.style.filter='brightness(40%)'
@@ -202,6 +254,7 @@ function tingting(index){
             setTimeout(()=>{
                 item.style.pointerEvents='auto';
                 item.style.filter='brightness(100%)'
+                
             },2000)
         }
     })
