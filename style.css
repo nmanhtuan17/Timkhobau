@@ -136,7 +136,7 @@ body{
     align-items: center;
 }
 .part__2-map{
-    display: none;
+    /* display: none; */
     width: 100vw;
     height: 100vh;
     background-color: black;
@@ -402,9 +402,8 @@ body{
   
 }
 
-.round_1 {
-    display: none;
-}
+/* -------- VÒNG 2---------- */
+
 .round_2 {
     display: none;
     width: 100vw;
@@ -424,9 +423,9 @@ body{
     transition: all 1.5s ease;
     position: absolute;
     z-index: 10;
-    width: 100px;
-    top: 43.5%;
-    left: 47%;
+    width: 150px;
+    top: 39.5%;
+    left: 41%;
 }
 .round2_ques-1{
     position: absolute;
@@ -448,4 +447,35 @@ body{
 .round2_ques img{
     width: 120px;
     height: 120px;
+}
+.round2_modal-ques{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("./source/img/bg.png");
+    background-size: cover;
+    background-position: center;
+    top:0;
+    left: 0;
+    z-index: 20;
+    flex-direction: column;
+}
+.modal-ans{
+    display: flex;
+    justify-content: center;
+}
+.modal-ans input{
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    background-color: #E7E6FD;
+
+}
+.on{
+    display: flex !important;
 }

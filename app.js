@@ -49,7 +49,7 @@ function startGame1(){
     localStorage.setItem('_class',inputInfor[2].value)
     saveInfor(inputInfor[0].value,inputInfor[1].value,inputInfor[2].value)
     part_1.classList.remove('d-flex')
-    part_2.classList.add('d-flex')
+    // part_2.classList.add('d-flex')
     shipPos={
         y:Math.round(ship.getBoundingClientRect().top),
         x:Math.round(ship.getBoundingClientRect().left),
