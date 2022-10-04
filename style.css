@@ -159,7 +159,6 @@ body{
 }
 .main-map{
     width: 95%;
-
     height: 90%;
 
 }
@@ -401,4 +400,52 @@ body{
     transform: translateY(-300px);
     }
   
+}
+
+.round_1 {
+    display: none;
+}
+.round_2 {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+}
+.w-20{
+    width: 20%;
+}
+.w-60{
+    width: 60%;
+}
+.br-10px img {
+    border-radius: 10px;
+}
+
+.ship_round2{
+    transition: all 1.5s ease;
+    position: absolute;
+    z-index: 10;
+    width: 100px;
+    top: 43.5%;
+    left: 47%;
+}
+.round2_ques-1{
+    position: absolute;
+    bottom: 95px;
+    left: 115px;
+    transform: rotate(10deg);
+}
+.round2_ques-2{
+    position: absolute;
+    bottom: 47px;
+    transform: rotate(-5deg);
+}
+.round2_ques-3{
+    position: absolute;
+    bottom: 73px;
+    right: 165px;
+    transform: rotate(-4deg);
+}
+.round2_ques img{
+    width: 120px;
+    height: 120px;
 }
