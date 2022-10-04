@@ -3,7 +3,8 @@ const main=document.querySelector('.main');
 
 const chests=document.querySelectorAll('.chest');
 const ship=document.querySelector('.ship');
-
+const shipWave=document.querySelector('.ship-wave');
+const wrapShipWave=document.querySelector('.wrap-ship-wave');
 const map=document.querySelector('.main-map');
 const quesBox=document.querySelectorAll('.ques-box');
 const part_2=document.querySelector('.part__2-map')
@@ -61,7 +62,6 @@ document.addEventListener('keydown',(e)=>{
 features.forEach(feature=>{
     feature.addEventListener('click',()=>{
         handleMusic()
-
     })
 })
 
@@ -287,7 +287,6 @@ function handleGetData(data){
         chestsPos.push(pos)
     })
     
-    
     quesBox.forEach((quesBox,i)=>{
         quesBox.addEventListener('click',()=>{
             shipMove(chestsPos[i].x,chestsPos[i].y,i,data)
@@ -308,10 +307,17 @@ function checkValidate(){
         else{
             message[i].innerHTML=''
         }
-        console.log(item.value,isContinue,i)
         if((i==2) && (isContinue===true)){
-            console.log('start')
-            startGame1()
+            wrapShipWave.classList.add('d-block');
+
+            setTimeout(()=>{
+                shipWave.classList.add('ship-move')
+            },3000)
+            setTimeout(()=>{
+                wrapShipWave.classList.remove('d-block');
+
+                startGame1()
+            },7100)
         }
     })
 }

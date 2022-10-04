@@ -13,6 +13,7 @@
 body{
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 .moc{
     position: absolute;
@@ -36,7 +37,6 @@ body{
 }
 .features:hover{
     background-color: #bcbbbe;
-    
 }
 .main{
     width: 100vw;
@@ -411,6 +411,141 @@ body{
     right: 20px;
     top: 20px;
     
+}
+section .wave{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100px;
+    background: url("https://ik.imagekit.io/TLIT/wave__1__qEd1f3iA_.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664861940534");
+    background-size: 1000px 100px;
+}
+section .wave.wave1{
+    animation: animate 30s linear infinite;
+    z-index: 1000;
+    opacity: 1;
+    animation-delay: 0s;
+    bottom: 0;
+    z-index: 4;
+
+
+}
+section .wave.wave2{
+    animation: animate2 15s linear infinite;
+    z-index: 999;
+    opacity: 0.5;
+    animation-delay: -5s;
+    bottom: 10px;
+    
+}
+section .wave.wave3{
+    animation: animate3 30s linear infinite;
+    z-index: 998;
+    opacity: 0.2;
+    animation-delay: 2s;
+    bottom: 15px;
+
+    
+}
+section .wave.wave4{
+    animation: animate2 5s linear infinite;
+    z-index: 997;
+    opacity: 0.7;
+    animation-delay: -5s;
+    bottom: 10px;
+    z-index: 4;
+
+}
+.wrap-ship-wave{
+    display: none;
+}
+section .ship-wave{
+    width: 500px;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    z-index: 5;
+    transform-origin:bottom center;
+    -webkit-animation:ship 7s  infinite forwards;
+	-moz-animation:ship 7s  infinite forwards;
+	-o-animation:ship 7s  infinite forwards;
+	animation:ship 7s  infinite forwards;
+  
+}
+.ship-move{
+    animation: shipMove 4s forwards !important;
+}
+@keyframes shipMove {
+    0%{
+		transform: rotate(-10deg);
+    }
+    100%{
+        left:100vw;
+    }
+}
+@keyframes ship{
+    0% {
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+	}
+	10% {
+		transform: rotate(-3deg);
+		-webkit-transform: rotate(-3deg);
+	}
+	20% {
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+
+	}
+	30% {
+		transform: rotate(-3deg);
+		-webkit-transform: rotate(-3deg);
+	}
+	40% {
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(3deg);
+		-webkit-transform: rotate(3deg);
+	}
+	60% {
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+	}
+	70% {
+		transform: rotate(3deg);
+		-webkit-transform: rotate(3deg);
+	}
+	80% {
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+	}
+	90% {
+		transform: rotate(3deg);
+		-webkit-transform: rotate(3deg);
+	}
+	100%{
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg) ;
+	}
+}
+@keyframes animate{
+    0%{
+        background-position-x: 0;
+    }
+    100%{
+        background-position-x: 1000px;
+    }
+}
+@keyframes animate2{
+    0%{
+        background-position-x: 0;
+    }
+    100%{
+        background-position-x: -1000px;
+    }
 }
 .modal-answer:hover{
     background-color: #c4bfff;
