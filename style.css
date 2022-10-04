@@ -626,7 +626,7 @@ section .ship-wave{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("./source/img/bg.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("https://ik.imagekit.io/TLIT/bg_vg18K7VjX.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664807816723");
     background-size: cover;
     background-position: center;
     top:0;
@@ -651,4 +651,10 @@ section .ship-wave{
 }
 .on{
     display: flex !important;
+}
+
+.logo-r2{
+    width: 50px !important;
+    height: 50px !important;
+    margin-right: 12px !important;
 }
