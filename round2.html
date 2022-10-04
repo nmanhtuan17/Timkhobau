@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+    <title>No Tiltle</title>
+</head>
+<body>
+    <div class="round_2 row on">
+        <div class="w-20 map-left flex-container">
+            <div class="map-left-container map-container">
+                <h3 class="map-header">Thông tin</h3>
+                <div class="guide">
+                    <div class="guide--name infor">
+                        Họ và Tên: <span  class="infor-name infor-title"></span>
+                    </div>
+                    <div class="guide-msv infor">
+                        Mã sinh viên: <span  class="infor-msv infor-title"></span>
+                    </div>
+                    <div class="guide-class infor">
+                        Tên lớp chuyên ngành: <span class="infor-class infor-title"></span>
+                    </div>
+                    <div class="guide-class infor">
+                        Số điểm hiện tại: <span class="infor-score">0</span> điểm
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="br-10px w-60 map flex-container">
+            <img class="main-map" src="./source/img/lanscape.jpg" alt="">
+            <img class="ship ship_round2" src="./source/img/ship.png" alt="">
+            <div class="round2_ques-1 round2_ques">
+                <img src="./source/img/chest_open.png" alt="">
+            </div>
+            <div class="round2_ques-2 round2_ques">
+                <img src="./source/img/chest_open.png" alt="">
+            </div>
+            <div class="round2_ques-3 round2_ques">
+                <img src="./source/img/chest_open.png" alt="">
+            </div>
+        </div>
+        <div class="w-20 map-right flex-container">
+            <div class="map-right-container map-container">
+                <img src="./source/img/logo.png" alt="logo">
+                <h3 class="map-header">Hướng dẫn</h3>
+                <div class="guide">
+                   <ul>
+                    <li>
+                        Click vào kho báu để trả lời câu hỏi.
+                    </li>
+                    <li>
+                        Khi trả lời đúng câu hỏi bạn sẽ được 10 điểm.
+                    </li>
+                    <li>
+                        Bạn có thể bặt tắt nhạc khi bấm nút S trên bàn phím
+                    </li>
+                   </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="round2_modal-ques">
+            <!-- <div class="progress">
+                <span class="time-line"></span>
+            </div> -->
+            <div class="modal-ques-title flex-container">
+                <div class="ques-title flex-container">
+                    
+                
+                </div>
+            </div>
+            <div class="modal-ans ">
+                <input placeholder="Nhập đáp án của bạn"  type="text">
+            </div>
+        </div>
+        <div class="modal-failure">
+
+        </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+    <script src="./round2.js"></script>
+</body>

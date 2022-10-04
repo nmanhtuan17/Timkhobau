@@ -176,7 +176,7 @@ body{
     align-items: center;
 }
 .part__2-map{
-    display: none;
+    /* display: none; */
     width: 100vw;
     height: 100vh;
     background-color: black;
@@ -199,7 +199,6 @@ body{
 }
 .main-map{
     width: 95%;
-
     height: 90%;
 
 }
@@ -574,4 +573,82 @@ section .ship-wave{
     transform: translateY(-300px);
     }
   
+}
+
+/* -------- VÒNG 2---------- */
+
+.round_2 {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+}
+.w-20{
+    width: 20%;
+}
+.w-60{
+    width: 60%;
+}
+.br-10px img {
+    border-radius: 10px;
+}
+
+.ship_round2{
+    transition: all 1.5s ease;
+    position: absolute;
+    z-index: 10;
+    width: 150px;
+    top: 39.5%;
+    left: 41%;
+}
+.round2_ques-1{
+    position: absolute;
+    bottom: 95px;
+    left: 115px;
+    transform: rotate(10deg);
+}
+.round2_ques-2{
+    position: absolute;
+    bottom: 47px;
+    transform: rotate(-5deg);
+}
+.round2_ques-3{
+    position: absolute;
+    bottom: 73px;
+    right: 165px;
+    transform: rotate(-4deg);
+}
+.round2_ques img{
+    width: 120px;
+    height: 120px;
+}
+.round2_modal-ques{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("./source/img/bg.png");
+    background-size: cover;
+    background-position: center;
+    top:0;
+    left: 0;
+    z-index: 20;
+    flex-direction: column;
+}
+.modal-ans{
+    display: flex;
+    justify-content: center;
+}
+.modal-ans input{
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    background-color: #E7E6FD;
+
+}
+.on{
+    display: flex !important;
 }
