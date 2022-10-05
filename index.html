@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/x-icon" href="./source/img/ship.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="./style.css">
-    <title>No Tiltle</title>
+    <link rel="stylesheet" href="./finish.css">
+    <title>Truy tìm kho báu TLIT</title>
 </head>
 <body>
     <section class="main">
-        <div class="features feature"></div>
         <i class="fa-solid fa-play moc feature"></i>
+        
         <div class="part__1 d-flex">
             <div class="part__1-login d-flex">
                 <div class="login">
@@ -82,7 +84,7 @@
 
 
 
-        <div class="part__2-map row">
+        <div class="part__2-map ">
             <div class="map-left flex-container">
                 <div class="map-left-container map-container">
                     <h3 class="map-header">Thông tin</h3>
@@ -149,13 +151,131 @@
                         <li>
                             Bạn có thể bật tắt nhạc khi bấm nút enter trên bàn phím
                         </li>
+                        <li>
+                            Bạn có thể bật tắt tiếng hải âu và sóng khi bấm nút shift trên bàn phím
+                        </li>
                        </ul>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-next1">Let's Go</button>
 
             </div>
+            <button class="btn btn-primary btn-next1">Let's Go</button>
+
+        </div>
+
+
+<!-- -------------------------------------------------------------------------------------------------------------------- -->
+
+<div class="part__3-map ">
+    <div class="map-left flex-container">
+        <div class="map-left-container map-container">
+            <h3 class="map-header">Thông tin</h3>
+            <div class="guide">
+                <div class="guide--name infor">
+                    Họ và Tên: <span  class="infor-name infor-title"></span>
+    
+                </div>
+                <div class="guide-msv infor">
+                    Mã sinh viên: <span  class="infor-msv infor-title"></span>
+                </div>
+                <div class="guide-class infor">
+                    Tên lớp chuyên ngành: <span class="infor-class infor-title"></span>
+                </div>
+                <div class="guide-class infor">
+                    Số điểm hiện tại: <span class="infor-score">0</span> điểm
+                </div>
             </div>
+        </div>
+        
+    </div>
+    <div class="map flex-container">
+        <img class="main-map "src="./source/img/lanscape.jpg" alt="map">
+        <img class="part_3-ship" src="./source/img/ship.png" alt="">
+        <div class="part_3-ques_1 part_3-ques-box">
+            <img class="part_3-chest part_3-chest_1" src="./source/img/chest_close.png" alt="chest">
+            <div class="popup">
+                <div class="popup_T popup-container flex-container">
+                    <span  class="popup_T-content popup-content">T</span>
+                </div>
+                <div class="popup_L popup-container flex-container">
+                    <span  class="popup_L-content popup-content">L</span>
+                </div>
+                <div class="popup_U popup-container flex-container">
+                    <span  class="popup_U-content popup-content">U</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="map-right flex-container">
+        <div class="map-right-container map-container">
+            <img src="https://ik.imagekit.io/TLIT/logo_CQf0GK_UN.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664807816259" alt="logo">
+            <h3 class="map-header">Hướng dẫn</h3>
+            <div class="guide">
+               <ul>
+                <li>
+                    Khi tới kho báu bạn phải giải mã chữ để mở rương. Trả lời đúng mỗi chữ cái được 10 điểm.
+                </li>
+                <li>
+                    Lấy đủ 3 chữ T L U sẽ được thêm 20 điểm 
+                </li>
+                <li>
+                    Bạn có thể bật tắt nhạc khi bấm nút enter trên bàn phím
+                </li>
+                <li>
+                    Bạn có thể bật tắt tiếng hải âu và sóng khi bấm nút shift trên bàn phím
+                </li>
+               </ul>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-next2">Let's Go Win Island</button>
+    </div>
+</div>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+<div class="finish">
+    <img class="finish-ship" src="./source/img/ship.png" alt="">
+    <div class="flag-tlit">
+        <div class="stick"></div>
+        <div class="flag-container">
+            <img src="https://ik.imagekit.io/TLIT/logo_CQf0GK_UN.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664807816259" alt="logo">
+        </div>
+       
+    </div>
+    <div class="finish-score">
+        <h3>Congratulations</h3>
+        <span>
+            Chúc mừng bạn đã hoàn thành trò chơi!
+        </span>
+        
+        <div class="score-container">
+            <span>100 điểm</span>
+        </div>
+        <span class="time-finish">
+            Thời gian hoàn thành: <span class="num-time"></span>
+        </span>
+    </div>
+    <div class="finish-score-table">
+        <h3>Bảng xếp hạng TOP 10</h3>
+        <div class="score-table_header">
+            <div class="header-title">STT</div>
+            <div class="header-title">Msv</div>
+            <div class="header-title">Họ tên</div>
+            <div class="header-title">Điểm</div>
+            <div class="header-title">Thời gian</div>
+        </div>
+        <div class="score-table_body">
+            <ul>
+                <li class="table_body-person">
+                    <div class="body-title">1</div>
+                    <div class="body-title">A41820</div>
+                    <div class="body-title">Nguyễn Quang Thắng</div>
+                    <div class="body-title">100</div>
+                    <div class="body-title">00:00:20</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
             <div class="modal-ques">
             <div class="progress">
                 <span class="time-line"></span>
@@ -172,6 +292,23 @@
                 <div class="modal-answer flex-container"></div>
             </div>
             </div>
+
+            <div class="modal-ques">
+                <div class="progress">
+                    <span class="time-line"></span>
+                </div>
+                <div class="modal-ques-title flex-container ">
+                    <div class="ques-title flex-container modal-ques-title-2">
+                    </div>
+                </div>
+                <div class="modal-answers modal-answers-2">
+                    <input type="text" class="input-ans-2" placeholder="Mời bạn nhập câu trả lời">
+                    <button class="btn btn-primary btn-game2 ">Enter!</button>
+                </div>
+            </div>
+
+
+
             <div class="modal-failure">
                 <div class="modal-header">
                     Oops!!!
@@ -180,25 +317,17 @@
                 </div>
                 <button class="btn btn-primary btn-oops">Ok!</button>
             </div>
-<<<<<<< HEAD
             <section class="wrap-ship-wave">
                 <img class="ship-wave" src="./source/img/ship.png" alt="">
+                <img class="myChest" src="./source/img/chest_open.png" alt="chest">
+                <div class="go"></div>
                 <div class="wave wave1"></div>
                 <div class="wave wave2"></div>
                 <div class="wave wave3"></div>
                 <div class="wave wave4"></div>
             </section>
-=======
-
-            
-
-
-
-
-            
->>>>>>> part-2
     </section>
     <script type="module" src="./app.js"></script>
-    <script src="./round2.js"></script>
+    
 </body>
 </html>

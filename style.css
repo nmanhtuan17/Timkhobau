@@ -24,20 +24,6 @@ body{
     z-index: 5;
     cursor: pointer;
 }
-.features{
-    position: absolute;
-    background-color: #E7E6FD;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    border-radius: 50%;
-    top:-40px;
-    left: -40px;
-    border: 1px solid black;
-}
-.features:hover{
-    background-color: #bcbbbe;
-}
 .main{
     width: 100vw;
     height: 100vh;
@@ -169,6 +155,22 @@ body{
     left: 50%;
     transform: translateX(-50%);
 }
+.btn-next2{
+    display: none;
+    background-color:#E7E6FD;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 300px;
+    height: 70px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 /* ---------------------------------------------------------------------------- */
 .flex-container{
     display: flex;
@@ -176,10 +178,16 @@ body{
     align-items: center;
 }
 .part__2-map{
-    /* display: none; */
+    display: none;
     width: 100vw;
     height: 100vh;
     background-color: black;
+}
+.part__3-map{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
 }
 .map-left{
     width: 25%;
@@ -188,8 +196,6 @@ body{
 .map-right{
     width: 25%;
 
-
-    
 }
 .map{
     width: 50%;
@@ -200,8 +206,12 @@ body{
 .main-map{
     width: 95%;
     height: 90%;
-
 }
+.part__3-map .main-map{
+    width: 100%;
+    border-radius:10px;
+    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.35) );
+} 
 .map-right .map-right-container img{
     width: 70px;
     height: 70px;
@@ -231,10 +241,18 @@ body{
 .ship{
     transition: all 1.5s ease;
     position: absolute;
-    z-index: 10;
+    z-index: 100;
     width: 70px;
     top: 40%;
     left: 60px;
+}
+.part_3-ship{
+    transition: all 3s ease;
+    position: absolute;
+    z-index: 10;
+    width: 100px;
+    top: 50%;
+    left: 25%;
 }
 .ques-box{
     position: absolute;
@@ -243,13 +261,6 @@ body{
     text-align: center;
     z-index: 9;
     cursor: pointer;
-    
-}
-
-
-.ques-box span{
-    font-weight: bold;
-    display: block;
 }
 .chest{
     margin-top:10px ;
@@ -258,12 +269,34 @@ body{
     left: 50%;
     display: block;
     width: 70px;
-    height: 70px;
-    
+    height: 70px; 
 }
 .ques_1 {
     top: 15%;
     left: 15%;
+}
+.part_3-ques-box{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    z-index: 9;
+    cursor: pointer;
+    
+}
+.part_3-chest{
+    margin-top:10px ;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+.part_3-ques_1 {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .ques_2 {
     top: 15%;
@@ -360,6 +393,7 @@ body{
     z-index: 20;
     flex-direction: column;
 }
+
 .modal-ques-title{
     height: 50%;
     
@@ -396,6 +430,34 @@ body{
     text-align: center;
 
 }
+
+.modal-ques-title-2{
+    width: 70%;
+    height: 200px;
+}
+.modal-answers-2{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    margin: 0 auto;
+    background-color:#E7E6FD ;
+    width: 700px;
+    height: 150px;
+}
+.input-ans-2{
+    font-size: 20px;
+    width: 70%;
+    height: 50px;
+    background-color: transparent;
+    padding-left: 10px;
+    border: transparent;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+.btn-game2 {
+    width: 100px;
+    height: 50px;
+}
 .ting{
     position: absolute;
     font-size: 30px;
@@ -419,6 +481,7 @@ section .wave{
     height: 100px;
     background: url("https://ik.imagekit.io/TLIT/wave__1__qEd1f3iA_.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664861940534");
     background-size: 1000px 100px;
+    z-index: 500;
 }
 section .wave.wave1{
     animation: animate 30s linear infinite;
@@ -458,24 +521,71 @@ section .wave.wave4{
 }
 .wrap-ship-wave{
     display: none;
+    
 }
 section .ship-wave{
+    z-index: 500!important;
+    display: none;
     width: 500px;
     position: absolute;
     bottom: 40px;
     left: 0;
     z-index: 5;
     transform-origin:bottom center;
-    -webkit-animation:ship 7s  infinite forwards;
-	-moz-animation:ship 7s  infinite forwards;
-	-o-animation:ship 7s  infinite forwards;
-	animation:ship 7s  infinite forwards;
-  
+    -webkit-animation:ship 12s  infinite forwards;
+	-moz-animation:ship 12s  infinite forwards;
+	-o-animation:ship 12s  infinite forwards;
+	animation:ship 12s  infinite forwards;
 }
-.ship-move{
-    animation: shipMove 4s forwards !important;
+section .myChest{
+    z-index: 500!important;
+    display: none;
+    width: 250px;
+    position: absolute;
+    bottom: 30px;
+    left: 700px;
+    -webkit-animation:ship 12s  infinite forwards;
+	-moz-animation:ship 12s  infinite forwards;
+	-o-animation:ship 12s  infinite forwards;
+	animation:ship 12s  infinite forwards;
 }
-@keyframes shipMove {
+.ship-move2{
+    animation: shipMoveRight2 4s !important;
+}
+.ship-move1{
+    animation: shipMoveRight1 2s !important;
+}
+.go{
+    z-index: 500!important;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    bottom: 200px;
+    left: 455px;
+    z-index: 10;
+    font-weight: bold;
+    transform-origin: bottom left;
+    animation: xh 1s ease ;
+    display: none;
+}
+@keyframes shipMoveRight1{
+    0%{
+		transform: rotate(-10deg);
+        left: -100px;
+        bottom: 60px;
+    }
+    100%{
+        left:0;
+    }
+}
+@keyframes xh {
+    0%{
+        transform: scale(0);
+    }
+}
+@keyframes shipMoveRight2 {
     0%{
 		transform: rotate(-10deg);
     }
@@ -483,51 +593,71 @@ section .ship-wave{
         left:100vw;
     }
 }
+@keyframes roi{
+    0%{
+        bottom: 600px;
+    }
+}
 @keyframes ship{
     0% {
 		transform: rotate(0deg);
 		-webkit-transform: rotate(0deg);
+        bottom:60px;
 	}
 	10% {
 		transform: rotate(-3deg);
 		-webkit-transform: rotate(-3deg);
+        bottom:45px;
 	}
 	20% {
 		transform: rotate(0deg);
 		-webkit-transform: rotate(0deg);
-
+        bottom:60px;
 	}
 	30% {
 		transform: rotate(-3deg);
 		-webkit-transform: rotate(-3deg);
+        bottom:45px;
 	}
 	40% {
 		transform: rotate(0deg);
 		-webkit-transform: rotate(0deg);
+        bottom:60px;
+
 	}
 	50% {
 		transform: rotate(3deg);
-		-webkit-transform: rotate(3deg);
+		-webkit45ransform: rotate(3deg);
+        bottom:30px;
+
 	}
 	60% {
 		transform: rotate(0deg);
 		-webkit-transform: rotate(0deg);
+        bottom:60px;
+
 	}
 	70% {
 		transform: rotate(3deg);
-		-webkit-transform: rotate(3deg);
+		-webkit45ransform: rotate(3deg);
+        bottom:30px;
+
 	}
 	80% {
 		transform: rotate(0deg);
 		-webkit-transform: rotate(0deg);
+        bottom:60px;
+
 	}
 	90% {
 		transform: rotate(3deg);
-		-webkit-transform: rotate(3deg);
+		-webkit45ransform: rotate(3deg);
 	}
 	100%{
 		transform: rotate(0deg);
 		-webkit-transform: rotate(0deg) ;
+        bottom:50px;
+
 	}
 }
 @keyframes animate{
@@ -575,86 +705,74 @@ section .ship-wave{
   
 }
 
-/* -------- VÒNG 2---------- */
 
-.round_2 {
+/* ----------------------------------------------------- */
+.popup{
     display: none;
-    width: 100vw;
-    height: 100vh;
-}
-.w-20{
-    width: 20%;
-}
-.w-60{
-    width: 60%;
-}
-.br-10px img {
-    border-radius: 10px;
-}
-
-.ship_round2{
-    transition: all 1.5s ease;
     position: absolute;
-    z-index: 10;
-    width: 150px;
-    top: 39.5%;
-    left: 41%;
-}
-.round2_ques-1{
-    position: absolute;
-    bottom: 95px;
-    left: 115px;
-    transform: rotate(10deg);
-}
-.round2_ques-2{
-    position: absolute;
-    bottom: 47px;
-    transform: rotate(-5deg);
-}
-.round2_ques-3{
-    position: absolute;
-    bottom: 73px;
-    right: 165px;
-    transform: rotate(-4deg);
-}
-.round2_ques img{
-    width: 120px;
-    height: 120px;
-}
-.round2_modal-ques{
-    display: none;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("https://ik.imagekit.io/TLIT/bg_vg18K7VjX.png?ik-sdk-version=javascript-1.4.3&updatedAt=1664807816723");
-    background-size: cover;
-    background-position: center;
-    top:0;
-    left: 0;
-    z-index: 20;
-    flex-direction: column;
-}
-.modal-ans{
-    display: flex;
-    justify-content: center;
-}
-.modal-ans input{
-    display: inline;
+    top:-90%;
+    left:-100%;
+    transform: translateX(-20px);
+    width: 400px;
+    height: 100px;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    border-radius: 10px;
-    padding: 10px;
-    outline: none;
-    background-color: #E7E6FD;
+    color: white;
+    transform-origin: bottom center;
+}
+.popup_T{
+    background-color: rgb(0,10,61);
+    width: 33%;
+    height: 100%;
+    border-radius: 50% 0 0 50%;
+    animation: moveLeftTo 1s ;
+}
+.popup_L{
+    color: rgb(0,10,61);
+    background-color: white;
+    width: 33%;
+    height: 100%;
+    animation: moveTopTo 0.7s ;
 
 }
-.on{
-    display: flex !important;
+.popup_U{
+    background-color: rgb(217,30,30);
+    width: 33%;
+    height: 100%;
+    border-radius: 0 50% 50% 0;
+    animation: moveRightTo 1s ;
+
+}
+.popup-content{
+    font-size: 50px;
+    font-weight: bold;
+}
+@keyframes moveRightTo{
+    0%{
+        transform: translateX(100px);
+    }
+}
+@keyframes moveLeftTo{
+    0%{
+        transform: translateX(-100px);
+    }
+}
+@keyframes moveTopTo{
+    0%{
+        transform: translateY(-100px);
+    }
+}
+.popup_T-content{
+    transform: translateX(5px);
+}
+.popup_U-content{
+    transform: translateX(-5px);
+}
+.popup-container{
+    cursor: pointer;
+}
+.popup-container:hover{
+    filter:brightness(70%);
 }
 
-.logo-r2{
-    width: 50px !important;
-    height: 50px !important;
-    margin-right: 12px !important;
-}
+/* ------------------------------------------------------------- */
