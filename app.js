@@ -1,12 +1,12 @@
 const api = "https://63331d67433198e79dbfa3d4.mockapi.io/api/DatasGame"
 const api2="https://63331d67433198e79dbfa3d4.mockapi.io/api/DatasUserGame"
-const main=document.querySelector('.main');
+
 const question2=["Chữ T: Tên gọi của khoa Công nghệ thông tin vào năm 2021? ","Chữ L: Khi cần chứng minh 1 bài toán, chúng ta cần đưa ra điều gì?","Chữ U: Từ nào dùng để chỉ việc đưa từ lí thuyết mà chúng ta có được đi vào thực tiễn?" ]
 const chests=document.querySelectorAll('.chest');
 const ship=document.querySelector('.ship');
 const shipWave=document.querySelector('.ship-wave');
 const wrapShipWave=document.querySelector('.wrap-ship-wave');
-const map=document.querySelector('.main-map');
+
 const quesBox=document.querySelectorAll('.ques-box');
 const myChest=document.querySelector('.myChest')
 
@@ -20,6 +20,7 @@ const btnNext2=document.querySelector(".btn-next2")
 const btnNext1=document.querySelector('.btn-next1');
 const btnStart=document.querySelector('.btn-start');
 
+const clock=document.querySelectorAll('.clock-time')
 
 const popupContainer=document.querySelectorAll('.popup-container');
 const modal=document.querySelectorAll('.modal-ques')
@@ -47,12 +48,17 @@ inputInfor[0].value=localStorage.getItem('name')?localStorage.getItem('name'):''
 inputInfor[1].value=localStorage.getItem('msv')?localStorage.getItem('msv'):''
 inputInfor[2].value=localStorage.getItem('_class')?localStorage.getItem('_class'):''
 var isRegist=localStorage.getItem('isRegist')?true:false
-console.log(isRegist)
+const chestsPos=[]
+var shipPos={
+ 
+}
+var isClearTime=false;
 var myScore=0
 var isClear
 var nowIndex
 var mainData
-var users
+var phut=0;
+var giay=0;
 // PUT request data to api
 function updateData(api,data){
     const requestOptions = {
@@ -62,16 +68,9 @@ function updateData(api,data){
     };
     fetch(`${api}/1`, requestOptions)
 }
-getData(api2,(datas)=>{
-    users=datas
-    
-})
+
 // -------------------------------------------------
 
-const chestsPos=[]
-var shipPos={
- 
-}
 function handleMusic(){
     if(features.classList.contains('fa-play')){
         part_1Song.play()
@@ -103,13 +102,19 @@ features.addEventListener('click',()=>{
 
 btnStart.addEventListener('click',()=>{
     checkValidate()
-  
+    btnStart.style.pointerEvents = 'none';
+
 })
 btnNext1.addEventListener('click',()=>{
     animShip("Đuổi theo hòm kho báu đang trôi dạt vào đảo tri thức!",2,2000,6000,10000)
+    btnNext1.style.pointerEvents = 'none';
+
 });
 btnNext2.addEventListener('click',()=>{
-    animShip("Tiến tơi đảo chiến thắng nào!",3,2000,5000,9000)
+    getData(api2,(datas)=>{
+        animShip("Tiến tơi đảo chiến thắng nào!",3,2000,5000,9000,datas[0].data)
+    })
+    btnNext2.style.pointerEvents = 'none';
 });
 function startGame1(){
     localStorage.setItem('name',inputInfor[0].value)
@@ -117,22 +122,11 @@ function startGame1(){
     localStorage.setItem('_class',inputInfor[2].value.toUpperCase())
 
     localStorage.setItem('isRegist',true);
-    
-    console.log(isRegist)
-    
-    if(isRegist===false){
-        const myData={
-            name:inputInfor[0].value,
-            msv:inputInfor[1].value.toUpperCase(),
-            myclass:inputInfor[2].value.toUpperCase()
-        }
-        users[0].data.push(myData)
-        console.log(users[0].data)
-        updateData(api2,users[0])
-    }
     saveInfor(inputInfor[0].value,inputInfor[1].value.toUpperCase(),inputInfor[2].value.toUpperCase())
     part_1.classList.remove('d-flex')
     part_2.classList.add('d-flex')
+    clockCount()
+
     shipPos={
         y:Math.round(ship.getBoundingClientRect().top),
         x:Math.round(ship.getBoundingClientRect().left),
@@ -145,6 +139,9 @@ function saveInfor(name,msv,_class){
     inforTitle[0].innerHTML=name
     inforTitle[1].innerHTML=msv
     inforTitle[2].innerHTML=_class
+    inforTitle[3].innerHTML=name
+    inforTitle[4].innerHTML=msv
+    inforTitle[5].innerHTML=_class
 }
 // thuyen di chuyen
 function shipMove(x,y,i,data){
@@ -296,15 +293,11 @@ function check(index){
 }
 // am thanh chien thang
 function tingting(index){
-    ansTitle[index].innerHTML+=`<i class="fa-solid fa-check ting"></i>`
     ansTitle.forEach((item,i)=>{
         if(i!==index){
-            item.style.filter='brightness(40%)'
             item.style.pointerEvents='none'
             setTimeout(()=>{
                 item.style.pointerEvents='auto';
-                item.style.filter='brightness(100%)'
-                
             },2000)
         }
     })
@@ -366,7 +359,7 @@ function checkValidate(){
         }
     })
 }
-function animShip(content,where,time1,time2,time3){
+function animShip(content,where,time1,time2,time3,data=''){
     if(where==2){
         myChest.classList.add('d-block');
     }
@@ -384,10 +377,10 @@ function animShip(content,where,time1,time2,time3){
     setTimeout(()=>{
         if(where==2){
             myChest.classList.remove('d-block');
-        }
-        if(where==2){
             myChest.classList.remove('ship-move2');
+
         }
+        
         shipWave.classList.add('ship-move2');
         go.classList.remove('d-block');
     },time2)
@@ -395,17 +388,29 @@ function animShip(content,where,time1,time2,time3){
         wrapShipWave.classList.remove('d-block');
         shipWave.classList.remove('ship-move2');
         if(where ===1){
-            startGame1()
+            startGame1(data)
         }
         if(where ===2){
             startGame2()
         }
         if(where ===3){
-            finish()
+            //update------------------------------------------------when finish game----------------------------------------
+            const myData={
+                name:inputInfor[0].value,
+                msv:inputInfor[1].value.toUpperCase(),
+                myclass:inputInfor[2].value.toUpperCase(),
+                myScore:myScore,
+                myMinutes:phut,
+                mySeconds:giay
+            }
+            data.push(myData)
+            updateData(api2,{data:data})
+            finish(data)
         }
     },time3)
 }
 function startGame2(){
+    score[1].innerHTML=myScore
     const ship3=document.querySelector('.part_3-ship');
     const chest3=document.querySelector('.part_3-chest');
     part_2.classList.remove('d-flex');
@@ -450,7 +455,7 @@ function handleGame2(){
                 }
                 width-=0.2;
                 progress[1].style.width=width+'%';
-            },20)
+            },50)
             modal[1].classList.add('d-flex');
             quesTitle[1].innerHTML=question2[index];
             enterAnswer(index);
@@ -507,21 +512,11 @@ function done(index,flag){
         if(checkFinish()){
             btnNext2.classList.add('d-block');
         }
-    },3000);
-    if(index===0){
-        quesTitle[1].innerHTML="Đáp án: Toán Tin";
-    }
-    if(index===1){
-        quesTitle[1].innerHTML="Đáp án: Lập luận";
-    }
-    if(index===2){
-        quesTitle[1].innerHTML="Đáp án: Ứng dụng";
-    }
+    },2000);
 }
 function checkFinish(){
     var res=true
     popupContainer.forEach((item)=>{
-        console.log(item.classList.contains("done"))
         if(!item.classList.contains("done")){
             res=false;
         }
@@ -548,12 +543,42 @@ function phaohoa(){
         
     }, 3000);
 }
-function finish(){
+//-------------------------------------------------------------------------
+function finish(dataFinish){
+    console.log(dataFinish);
     part_3.classList.remove('d-flex');
     const finish=document.querySelector('.finish');
     const shipFinish=document.querySelector('.finish-ship');
     const flagFinish=document.querySelector('.flag-tlit');
+    const scoreFinish=document.querySelector('.score-container span');
+    const timeFinish=document.querySelector('.num-time');
+    const scoreTableFinish=document.querySelector('.score-table_body ul');
+    timeFinish.innerHTML=`${remakeTime(phut)}:${remakeTime(giay)} `;
     finish.classList.add('d-block');
+    for(var i=0;i<dataFinish.length;i++){
+        if(i==10){
+            break;
+        }
+        const html=`
+        <li class="table_body-person">
+                    <div class="body-title">${i+1}</div>
+                    <div class="body-title">${dataFinish[i].msv}</div>
+                    <div class="body-title">${dataFinish[i].name}</div>
+                    <div class="body-title">${dataFinish[i].myScore}</div>
+                    <div class="body-title">${remakeTime(dataFinish[i].myMinutes)}:${remakeTime(dataFinish[i].mySeconds)}</div>
+        </li>
+        `
+        scoreTableFinish.innerHTML+=html
+    }
+    var counting=0;
+    const countingScore=setInterval(()=>{
+        if(counting===myScore){
+            clearInterval(countingScore)
+        }
+        scoreFinish.innerHTML = counting
+
+        counting++;
+    },50)
     phaohoa()
     const shipFinishPos={
         y:Math.round(shipFinish.getBoundingClientRect().top),
@@ -563,7 +588,6 @@ function finish(){
         y:Math.round(flagFinish.getBoundingClientRect().top),
         x:Math.round(flagFinish.getBoundingClientRect().left)
     }
-
     shipFinish.style.transform =` translate(${flagFinishPos.x-shipFinishPos.x-720}px,${flagFinishPos.y-shipFinishPos.y}px)`;
     setTimeout(() => {
         const checkY1=Math.round(shipFinish.getBoundingClientRect().top)===flagFinishPos.y
@@ -576,4 +600,40 @@ function finish(){
 function bxhOpen(){
     const bxhBox=document.querySelector('.finish-score-table')
     bxhBox.classList.add('d-block')
+}
+
+function dynamicSort(property) { // sắp xếp cho mảng đối tượng
+    var sortOrder = 1;
+    if(property[0] === "-") { // sắp xếp tăng else giảm
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+
+function remakeTime(i){
+    if(i<10){
+        return "0"+i;
+    }
+    return i
+}
+function clockCount(){
+    
+    const timeCount=setInterval(() => {
+        giay++;
+        if(giay===60){
+            giay=0;
+            phut++;
+        }
+        if(isClearTime){
+            clearInterval(timeCount);
+        }
+        clock[1].innerHTML=`${remakeTime(phut)}:${remakeTime(giay)} `;
+        clock[0].innerHTML=`${remakeTime(phut)}:${remakeTime(giay)} `;
+
+    }, 1000);
 }
