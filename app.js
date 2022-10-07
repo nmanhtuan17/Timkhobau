@@ -1,5 +1,5 @@
 const api = "https://63331d67433198e79dbfa3d4.mockapi.io/api/DatasGame"
-const api2="https://63331d67433198e79dbfa3d4.mockapi.io/api/DatasUserGame"
+const api2="https://63331d67433198e79dbfa3d4.mockapi.io/api/DatasUserGameTLIT"
 
 const question2=["Chữ T: Tên gọi của khoa Công nghệ thông tin vào năm 2021? ","Chữ L: Khi cần chứng minh 1 bài toán, chúng ta cần đưa ra điều gì?","Chữ U: Từ nào dùng để chỉ việc đưa từ lí thuyết mà chúng ta có được đi vào thực tiễn?" ]
 const chests=document.querySelectorAll('.chest');
