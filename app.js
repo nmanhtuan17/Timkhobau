@@ -83,7 +83,6 @@ function handleMusic(){
     }
 }
 document.addEventListener('keydown',(e)=>{
-    console.log(e.key);
     if(e.key == "Enter"){
         handleMusic()
     }
@@ -477,6 +476,8 @@ function checkGame2(index,value){
         if (value==="toan tin"||value==="toán tin"){
             done(index,1);
             myScore+=10;
+            popupContainer[index].classList.add("true");
+
         }
         else{
             done(index,0);
@@ -486,6 +487,8 @@ function checkGame2(index,value){
         if (value==="lap luan" || value==="lập luận"){
             done(index,1);
             myScore+=10;
+            popupContainer[index].classList.add("true");
+
         }
         else{
             done(index,0);
@@ -495,6 +498,8 @@ function checkGame2(index,value){
         if (value==="ung dung"||value==="ứng dụng"){
             done(index,1);
             myScore+=10;
+            popupContainer[index].classList.add("true");
+
         }
         else{
             done(index,0);
@@ -502,6 +507,8 @@ function checkGame2(index,value){
     }
 }
 function done(index,flag){
+    const valueGame2=document.querySelector(".input-ans-2").value;
+    valueGame2="";
     popupContainer[index].style.pointerEvents="none";
     popupContainer[index].classList.add("done");
     popupContainer[index].style.filter="brightness(70%)";
@@ -515,13 +522,15 @@ function done(index,flag){
     },2000);
 }
 function checkFinish(){
-    var res=true
+    var res=true;
     popupContainer.forEach((item)=>{
         if(!item.classList.contains("done")){
             res=false;
         }
-        
     })
+    if(popupContainer[0].classList.contains("true")&& popupContainer[1].classList.contains("true")&& popupContainer[2].classList.contains("true")){
+        myScore+=20;
+    }
     return res;
 }
 
@@ -545,7 +554,7 @@ function phaohoa(){
 }
 //-------------------------------------------------------------------------
 function finish(dataFinish){
-    console.log(dataFinish);
+    dataFinish=dynamicSort(dataFinish)
     part_3.classList.remove('d-flex');
     const finish=document.querySelector('.finish');
     const shipFinish=document.querySelector('.finish-ship');
@@ -601,19 +610,30 @@ function bxhOpen(){
     const bxhBox=document.querySelector('.finish-score-table')
     bxhBox.classList.add('d-block')
 }
-
-function dynamicSort(property) { // sắp xếp cho mảng đối tượng
-    var sortOrder = 1;
-    if(property[0] === "-") { // sắp xếp tăng else giảm
-        sortOrder = -1;
-        property = property.substr(1);
-    }
-    return function (a,b) {
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-        return result * sortOrder;
-    }
+function traodoi(a,b){
+    var tg=a;
+    a=b;
+    b=tg;
+    return [a,b]
 }
+function dynamicSort(array) { // sắp xếp cho mảng đối tượng
+    for(let i=0;i<array.length-1;i++) {
+        for(let j=i+1;j<array.length;j++){
+            if(array[i].myScore<array[j].myScore){
+            
+                [array[i],array[j]]=traodoi(array[i],array[j])
+            }
+            if(array[i].myScore===array[j].myScore && array[i].myMinutes>array[j].myMinutes){
+                [array[i],array[j]]=traodoi(array[i],array[j])
 
+            }
+            if(array[i].myScore===array[j].myScore && array[i].myMinutes===array[j].myMinutes&& array[i].mySeconds===array[j].mySeconds){
+                [array[i],array[j]]=traodoi(array[i],array[j])
+            }
+        }
+    }
+    return array;
+}
 
 function remakeTime(i){
     if(i<10){
