@@ -101,8 +101,6 @@ features.addEventListener('click',()=>{
 
 btnStart.addEventListener('click',()=>{
     checkValidate()
-    btnStart.style.pointerEvents = 'none';
-
 })
 btnNext1.addEventListener('click',()=>{
     animShip("Đuổi theo hòm kho báu đang trôi dạt vào đảo tri thức!",2,2000,6000,10000)
