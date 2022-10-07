@@ -470,17 +470,19 @@ function enterAnswer(index){
         
 }
 function checkGame2(index,value){
+    document.querySelector(".input-ans-2").value="";
     if(index===0){
         if (value==="toan tin"||value==="toán tin"){
             done(index,1);
             myScore+=10;
             score[1].innerHTML=myScore
-
             popupContainer[index].classList.add("true");
 
         }
         else{
             done(index,0);
+       
+
         }
     }
     if(index===1){

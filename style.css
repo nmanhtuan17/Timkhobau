@@ -85,6 +85,8 @@ body{
 }
 .login__body{
     height: 60%;
+    position: relative;
+    z-index: 5;
 }
 .tiltle-input{
     display: block;
