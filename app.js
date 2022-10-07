@@ -476,6 +476,8 @@ function checkGame2(index,value){
         if (value==="toan tin"||value==="toán tin"){
             done(index,1);
             myScore+=10;
+            score[1].innerHTML=myScore
+
             popupContainer[index].classList.add("true");
 
         }
@@ -487,6 +489,8 @@ function checkGame2(index,value){
         if (value==="lap luan" || value==="lập luận"){
             done(index,1);
             myScore+=10;
+            score[1].innerHTML=myScore
+
             popupContainer[index].classList.add("true");
 
         }
@@ -498,6 +502,8 @@ function checkGame2(index,value){
         if (value==="ung dung"||value==="ứng dụng"){
             done(index,1);
             myScore+=10;
+            score[1].innerHTML=myScore
+
             popupContainer[index].classList.add("true");
 
         }
@@ -507,12 +513,9 @@ function checkGame2(index,value){
     }
 }
 function done(index,flag){
-    const valueGame2=document.querySelector(".input-ans-2").value;
-    valueGame2="";
     popupContainer[index].style.pointerEvents="none";
     popupContainer[index].classList.add("done");
     popupContainer[index].style.filter="brightness(70%)";
-    score[1].innerHTML=myScore
     flag===1?trueAnswer.play():failAnswer.play();
     setTimeout(()=>{
         modal[1].classList.remove('d-flex');
@@ -530,6 +533,7 @@ function checkFinish(){
     })
     if(popupContainer[0].classList.contains("true")&& popupContainer[1].classList.contains("true")&& popupContainer[2].classList.contains("true")){
         myScore+=20;
+        score[1].innerHTML=myScore
     }
     return res;
 }
@@ -627,7 +631,7 @@ function dynamicSort(array) { // sắp xếp cho mảng đối tượng
                 [array[i],array[j]]=traodoi(array[i],array[j])
 
             }
-            if(array[i].myScore===array[j].myScore && array[i].myMinutes===array[j].myMinutes&& array[i].mySeconds===array[j].mySeconds){
+            if(array[i].myScore===array[j].myScore && array[i].myMinutes===array[j].myMinutes&& array[i].mySeconds>array[j].mySeconds){
                 [array[i],array[j]]=traodoi(array[i],array[j])
             }
         }
