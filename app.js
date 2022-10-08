@@ -47,7 +47,9 @@ const inputInfor=document.querySelectorAll('.body-input')
 inputInfor[0].value=localStorage.getItem('name')?localStorage.getItem('name'):''
 inputInfor[1].value=localStorage.getItem('msv')?localStorage.getItem('msv'):''
 inputInfor[2].value=localStorage.getItem('_class')?localStorage.getItem('_class'):''
-var isRegist=localStorage.getItem('isRegist')?true:false
+
+
+
 const chestsPos=[]
 var shipPos={
  
@@ -70,23 +72,25 @@ function updateData(api,data){
 }
 
 // -------------------------------------------------
+
+//---------------------------------------------------
 document.onkeydown = function(e) {
-    if(event.keyCode == 123) {
+    if(e.key== 'F12') {
        return false;
     }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+    if(e.ctrlKey && e.shiftKey && e.key== 'I') {
        return false;
     }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+    if(e.ctrlKey && e.shiftKey && e.key == 'C') {
        return false;
     }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+    if(e.ctrlKey && e.shiftKey && e.key == 'J') {
        return false;
     }
-    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+    if(e.ctrlKey && e.key== 'U') {
        return false;
     }
-  }
+}
 //------------------------------------------------------------
 function handleMusic(){
     if(features.classList.contains('fa-play')){
@@ -117,7 +121,7 @@ features.addEventListener('click',()=>{
 })
 
 btnStart.addEventListener('click',()=>{
-    checkValidate()
+        checkValidate();
 })
 btnNext1.addEventListener('click',()=>{
     animShip("Đuổi theo hòm kho báu đang trôi dạt vào đảo tri thức!",2,2000,6000,10000)
@@ -126,27 +130,24 @@ btnNext1.addEventListener('click',()=>{
 });
 btnNext2.addEventListener('click',()=>{
     getData(api2,(datas)=>{
-        animShip("Tiến tơi đảo chiến thắng nào!",3,2000,5000,9000,datas[0].data)
+        animShip("Tiến tới đảo chiến thắng nào!",3,2000,5000,9000,datas[0].data)
     })
     btnNext2.style.pointerEvents = 'none';
 });
 function startGame1(){
+   
     localStorage.setItem('name',inputInfor[0].value)
     localStorage.setItem('msv',inputInfor[1].value.toUpperCase())
     localStorage.setItem('_class',inputInfor[2].value.toUpperCase())
-
-    localStorage.setItem('isRegist',true);
     saveInfor(inputInfor[0].value,inputInfor[1].value.toUpperCase(),inputInfor[2].value.toUpperCase())
     part_1.classList.remove('d-flex')
     part_2.classList.add('d-flex')
     clockCount()
-
     shipPos={
         y:Math.round(ship.getBoundingClientRect().top),
         x:Math.round(ship.getBoundingClientRect().left),
     }
-
-    getData(api,(datas)=>saveData(datas))
+        getData(api,(datas)=>saveData(datas))
 }
 
 function saveInfor(name,msv,_class){
@@ -575,8 +576,16 @@ function phaohoa(){
 }
 //-------------------------------------------------------------------------
 function finish(dataFinish){
-    dataFinish=dynamicSort(dataFinish)
-    part_3.classList.remove('d-flex');
+    dataFinish=dynamicSort(dataFinish);
+    if(part_3.classList.contains('d-flex')){
+        part_3.classList.remove('d-flex');
+    }
+    if(part_2.classList.contains('d-flex')){
+        part_3.classList.remove('d-flex');
+    }
+    if(part_1.classList.contains('d-flex')){
+        part_3.classList.remove('d-flex');
+    }
     const finish=document.querySelector('.finish');
     const shipFinish=document.querySelector('.finish-ship');
     const flagFinish=document.querySelector('.flag-tlit');
