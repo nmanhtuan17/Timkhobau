@@ -72,7 +72,39 @@ function updateData(api,data){
 }
 
 // -------------------------------------------------
+function toggleFullScreen() {
 
+    if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen))
+    {
+        if (document.documentElement.requestFullScreen){
+            document.documentElement.requestFullScreen();
+        }
+        else if (document.documentElement.mozRequestFullScreen){ /* Firefox */
+            document.documentElement.mozRequestFullScreen();
+        }
+        else if (document.documentElement.webkitRequestFullScreen){   /* Chrome, Safari & Opera */
+            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+        else if (document.msRequestFullscreen){ /* IE/Edge */
+            document.documentElement.msRequestFullscreen();
+        }
+    }
+    else
+    {
+        if (document.cancelFullScreen){
+            document.cancelFullScreen();
+        }
+        else if (document.mozCancelFullScreen){ /* Firefox */
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitCancelFullScreen){   /* Chrome, Safari and Opera */
+            document.webkitCancelFullScreen();
+        }
+        else if (document.msExitFullscreen){ /* IE/Edge */
+            document.msExitFullscreen();
+        }
+    }
+}
 //---------------------------------------------------
 document.onkeydown = function(e) {
     if(e.key== 'F12') {
@@ -121,7 +153,7 @@ features.addEventListener('click',()=>{
 })
 
 btnStart.addEventListener('click',()=>{
-        checkValidate();
+    checkValidate();
 })
 btnNext1.addEventListener('click',()=>{
     animShip("Đuổi theo hòm kho báu đang trôi dạt vào đảo tri thức!",2,2000,6000,10000)
@@ -368,6 +400,8 @@ function checkValidate(){
             message[i].innerHTML=''
         }
         if((i==2) && (isContinue===true)){
+            toggleFullScreen()
+
             beach.play()
             part_1Song.volume=0.2;
            animShip("Tiến lên thuyền trưởng!",1,2000,5000,9000)
