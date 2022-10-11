@@ -104,23 +104,23 @@ function toggleFullScreen() {
     }
 }
 //---------------------------------------------------
-document.onkeydown = function(e) {
-    if(e.key== 'F12') {
-       return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.key== 'I') {
-       return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.key == 'C') {
-       return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.key == 'J') {
-       return false;
-    }
-    if(e.ctrlKey && e.key== 'U') {
-       return false;
-    }
-}
+// document.onkeydown = function(e) {
+//     if(e.key== 'F12') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.key== 'I') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.key == 'C') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.key == 'J') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.key== 'U') {
+//        return false;
+//     }
+// }
 //------------------------------------------------------------
 function handleMusic(){
     if(features.classList.contains('fa-play')){
@@ -393,22 +393,33 @@ function handleGetData(data){
 function checkValidate(data){
     const message=document.querySelectorAll('.message')
     var isContinue=true
-    var isPlay=true;
+  
+    
+console.log(inputInfor[1].value.length)
     inputInfor.forEach((item,i)=>{
         if(i===1){
             for(var index=0;index<data.length;index++){
                 if(data[index].msv===inputInfor[1].value.toUpperCase()){
                     message[1].innerHTML='Mã sinh viên đã chơi rồi!';
                     isContinue=false;
-                    isPlay=false;
+               
                 }
+            }
+            if(Boolean(Number(inputInfor[1].value.slice(1)))===false || inputInfor[1].value.length==1){
+                message[1].innerHTML='Đây không phải mã sinh viên!';
+                isContinue=false;
+            }
+            if(Boolean(Number(inputInfor[1].value.slice(1)))===true && (Number(inputInfor[1].value.slice(1))<44076 || Number(inputInfor[1].value.slice(1))>50000)){
+                message[1].innerHTML='Bạn phải là K35 mới tham gia được trò chơi';
+                isContinue=false;
+
             }
         }
         if(item.value===''){
             message[i].innerHTML='Không bỏ trống trường này!';
             isContinue=false;
         }
-        else if(isPlay!==false){
+        else if(isContinue!==false){
             message[i].innerHTML=''
         }
         if((i==2) && (isContinue===true)){
