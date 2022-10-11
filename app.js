@@ -49,7 +49,6 @@ inputInfor[1].value=localStorage.getItem('msv')?localStorage.getItem('msv'):''
 inputInfor[2].value=localStorage.getItem('_class')?localStorage.getItem('_class'):''
 
 
-
 const chestsPos=[]
 var shipPos={
  
@@ -73,7 +72,6 @@ function updateData(api,data){
 
 // -------------------------------------------------
 function toggleFullScreen() {
-
     if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen))
     {
         if (document.documentElement.requestFullScreen){
@@ -106,23 +104,23 @@ function toggleFullScreen() {
     }
 }
 //---------------------------------------------------
-document.onkeydown = function(e) {
-    if(e.key== 'F12') {
-       return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.key== 'I') {
-       return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.key == 'C') {
-       return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.key == 'J') {
-       return false;
-    }
-    if(e.ctrlKey && e.key== 'U') {
-       return false;
-    }
-}
+// document.onkeydown = function(e) {
+//     if(e.key== 'F12') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.key== 'I') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.key == 'C') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.shiftKey && e.key == 'J') {
+//        return false;
+//     }
+//     if(e.ctrlKey && e.key== 'U') {
+//        return false;
+//     }
+// }
 //------------------------------------------------------------
 function handleMusic(){
     if(features.classList.contains('fa-play')){
@@ -136,7 +134,6 @@ function handleMusic(){
     }
 }
 document.addEventListener('keydown',(e)=>{
-    console.log(e.key)
     if(e.key == "Enter"){
         handleMusic()
     }
@@ -154,7 +151,12 @@ features.addEventListener('click',()=>{
 })
 
 btnStart.addEventListener('click',()=>{
-    checkValidate();
+    btnStart.innerHTML=`<span class="loader"></span>`;
+    getData(api2,(datas)=>{
+        btnStart.innerHTML=`Let's start!`;
+        checkValidate(datas[0].data);
+    })
+    
 })
 btnNext1.addEventListener('click',()=>{
     animShip("Đuổi theo hòm kho báu đang trôi dạt vào đảo tri thức!",2,2000,6000,10000)
@@ -388,21 +390,29 @@ function handleGetData(data){
     mainData=data
 }
 
-function checkValidate(){
-    var isContinue=true
+function checkValidate(data){
     const message=document.querySelectorAll('.message')
+    var isContinue=true
+    var isPlay=true;
     inputInfor.forEach((item,i)=>{
+        if(i===1){
+            for(var index=0;index<data.length;index++){
+                if(data[index].msv===inputInfor[1].value.toUpperCase()){
+                    message[1].innerHTML='Mã sinh viên đã chơi rồi!';
+                    isContinue=false;
+                    isPlay=false;
+                }
+            }
+        }
         if(item.value===''){
             message[i].innerHTML='Không bỏ trống trường này!';
-            isContinue=false
-            return;
+            isContinue=false;
         }
-        else{
+        else if(isPlay!==false){
             message[i].innerHTML=''
         }
         if((i==2) && (isContinue===true)){
             toggleFullScreen()
-
             beach.play()
             part_1Song.volume=0.2;
            animShip("Tiến lên thuyền trưởng!",1,2000,5000,9000)
